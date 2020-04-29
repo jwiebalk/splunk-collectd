@@ -1,0 +1,39 @@
+version: '1.0'
+
+services:
+
+  splunk:
+    image: splunk/splunk:latest
+    # volumes:
+      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      # - elasticsearch-volume:/usr/share/elasticsearch/data
+    ports:
+      - "8000:8000"
+      - "5000:5000"
+    networks:
+      - splunk
+    environment:
+    - SPLUNK_PASSWORD=Se^8&9E3oGHsGpl4
+    - SPLUNK_START_ARGS=--accept-license
+
+  collectd:
+    build:
+      context: collectd/
+    volumes:
+      - collectd-volume:/opt/collectd/var/lib/collectd/rrd
+    ports:
+      - "25826:25826/udp"
+      - "8125:8125/udp"
+    networks:
+      - splunk
+
+
+volumes:
+  splunk-volume:
+    driver: local
+  collectd-volume:
+    driver: local
+
+networks:
+  splunk:
+    driver: bridge
