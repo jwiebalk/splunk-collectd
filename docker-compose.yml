@@ -1,15 +1,15 @@
-version: '1.0'
+version: '2.2'
 
 services:
 
   splunk:
     image: splunk/splunk:latest
-    # volumes:
-      # - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
-      # - elasticsearch-volume:/usr/share/elasticsearch/data
+    volumes:
+      - ./splunk/inputs.conf:/opt/splunk/etc/apps/splunk_httpinput/local/inputs.conf:rw
     ports:
       - "8000:8000"
       - "5000:5000"
+      - "8088:8088"
     networks:
       - splunk
     environment:
