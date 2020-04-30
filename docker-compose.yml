@@ -7,6 +7,7 @@ services:
     volumes:
       - ./splunk/splunk_httpinput/inputs.conf:/opt/splunk/etc/apps/splunk_httpinput/local/inputs.conf:rw
       - ./splunk/tcp/inputs.conf:/opt/splunk/etc/apps/search/local/inputs.conf:rw
+      - ./splunk/server.conf:/opt/splunk-etc/system/local/server.conf:rw
     ports:
       - "8000:8000"
       - "5000:5000"
@@ -16,6 +17,7 @@ services:
     environment:
     - SPLUNK_PASSWORD=${SPLUNK_PASSWORD}
     - SPLUNK_START_ARGS=--accept-license
+    - SPLUNK_LICENSE_URI=Free
 
   collectd:
     build:
