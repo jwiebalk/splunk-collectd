@@ -13,7 +13,7 @@ services:
     networks:
       - splunk
     environment:
-    - SPLUNK_PASSWORD=Se^8&9E3oGHsGpl4
+    - SPLUNK_PASSWORD=${SPLUNK_PASSWORD}
     - SPLUNK_START_ARGS=--accept-license
 
   collectd:
@@ -26,6 +26,9 @@ services:
       - "8125:8125/udp"
     networks:
       - splunk
+    environment:
+    - SPLUNK_TOKEN=${SPLUNK_TOKEN}
+
 
 
 volumes:
