@@ -24,11 +24,11 @@ export SPLUNK_TOKEN=`uuidgen | tr '[:upper:]' '[:lower:]'`
 
 2. Add this token to the SPLUNK_TOKEN entry in the `.env`
 3. Configure a password for Splunk in the `.env`
-4. Add the SPLUNK_TOKEN to the inputs.conf using `sed -i "s/{{SPLUNK_TOKEN}}/$SPLUNK_TOKEN/g" splunk/inputs.conf`
+4. Add the SPLUNK_TOKEN to the inputs.conf using `sed -i "s/{{SPLUNK_TOKEN}}/$SPLUNK_TOKEN/g" splunk/splunk_httpinput/inputs.conf`
 
 ### Bringing up the stack
 
-1. Run `docker-compose build` first to inject the environment variables from the `.env` and the updated `splunk/inputs.conf`
+1. Run `docker-compose build` first to inject the environment variables from the `.env` and the updated `splunk/splunk_httpinput/inputs.conf`
 
 2. Start the stack in detached mode:
 
